@@ -7,7 +7,7 @@ class Burger():
   self.container = container
   
  def __str__(self):
-  return "I'm a %s %s burger" %(self.doneness, self.filling)
+  return "I'm a %s %s burger with %s" %(self.doneness, self.filling, self.toppings)
  
  def toppings_allowed(self, attempted_toppings):
   allowed_toppings =["cheese", "tomato", "onion", "lettuce"]
@@ -40,28 +40,33 @@ class Burger():
    
   return self.size * 4 * time_for_doneness 
   
-rare_Burger = Burger("beef", "rare", 0.25, ["cheese"], "bread")
- 
-#print rare_Burger.cooking_time() 
-#print type(rare_Burger)
+rare_Burger = Burger("beef", "rare", 0.25, ["ice cream"], "bread") # rare_Burger is an instance bounded by specific states
+my_Burger = Burger("beef", "medium", 0.25, ["cheese"], "bread") 
+print my_Burger.tastiness()
+
+print rare_Burger.cooking_time()
+print my_Burger.cooking_time()
+print rare_Burger.tastiness()
+
 print rare_Burger
+print my_Burger
 
 class VeggieBurger(Burger): # create a subclass VeggieBurger of the superclass Burger
- def __init__(self, size, toppings_ordered, container):
-  Burger("vegie patty", "medium", size, toppings_ordered, container) 
-  self.doneness= "medium"
-  self.container = container
+ def __init__(self, toppings_ordered, container):
+  Burger.__init__(self, "veggie patty", "medium", 0.25, ["cheese"])
+#  self.toppings_ordered = toppings
+ # self.container = container
  
  def toppings_allowed(self, attempted_toppings):
   allowed_toppings =["cheese", "tomato", "onion", "lettuce"]
   toppings = []
- for topping in attempted_toppings:
+  for topping in attempted_toppings:
    if topping in allowed_toppings:
     toppings.append(toppings_ordered)
-   return toppings
+  return toppings
 
  def cooking_time(self):
   return 6
   
-veggie_burger = VeggieBurger(["tomato", "bacon"], "bread")
-print veggie_burger
+veggie_burger = VeggieBurger(0.25, ["tomato", "bacon"], "bread")
+#print veggie_burger
