@@ -2,11 +2,15 @@ def binarify(num):
   """convert positive integer to base 2"""
   if num<=0: return '0'
   digits = []
+<<<<<<< HEAD
   while num > 0:
    digits.append(str(num % 2)) # change it into a string and then append the remainder  
    num = num/2 # move on to the next
    digits = digits[::-1] # reverse the order 
   return ''.join(digits) # join the string '' with the string elements in the list digits
+=======
+  return ''.join(digits)
+>>>>>>> upstream/master
 
 def int_to_base(num, base):
   """convert positive integer to a string in any base"""

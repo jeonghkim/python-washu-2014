@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #file = open('words.txt')
 
 #for line in file:
@@ -30,3 +31,10 @@ def is_abecedarian(word):
  
 print is_abecedarian("randomword")
 print is_abecedarian("abcde")
+=======
+file = open('words.txt')
+
+for line in file:
+  word = line.strip()
+  print word
+>>>>>>> upstream/master

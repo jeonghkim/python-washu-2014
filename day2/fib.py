@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Fibonacci number
 # 0,1,1,2,3,5,8, ...
 last = 0 # defined in global
@@ -28,6 +29,24 @@ second = 0
  
 #next_fib()
    
+=======
+last = 0
+second = 0
+
+def next_fib():
+  global last
+  global second
+  
+  if last == 0:
+    last = 1
+    return 0
+
+  current = last
+  last = second + last
+  second = current
+  return current
+    
+>>>>>>> upstream/master
 class Fib(object):
   def __init__(self):
     self.last = 0
@@ -37,12 +56,20 @@ class Fib(object):
     if self.last == 0:
       self.last = 1
       return 0
+<<<<<<< HEAD
 Fib1 = Fib.next_fib()
 print Fib1
 #    current = self.last
  #   self.last = self.second + self.last
   #  self.second = current
    # return current
+=======
+
+    current = self.last
+    self.last = self.second + self.last
+    self.second = current
+    return current
+>>>>>>> upstream/master
 
 # import fib  
 # fib.next_fib()  

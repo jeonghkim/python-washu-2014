@@ -1,5 +1,9 @@
 import unittest
+<<<<<<< HEAD
 import clock
+=======
+from clock import Clock
+>>>>>>> upstream/master
 
 class ClockTest(unittest.TestCase):
 
@@ -44,3 +48,7 @@ class ClockTest(unittest.TestCase):
 
 if __name__ == '__main__':
   unittest.main() 
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master

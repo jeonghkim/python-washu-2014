@@ -10,7 +10,10 @@
  #def __init__(self, title):
  # self.title = title
  # self.votes = {"yes" => [], "no" => [], "abstain" => []} # distionaries
-  
+
+
+# Polymorphism
+
 class Animal(object):
  def __init__(self, name):
   self.name = name
@@ -20,6 +23,8 @@ class Animal(object):
   
 class Cat(Animal):
  def talk(self):
+  return self.meow()
+ def meow(self):
   return 'Meow!'
   
 cat = Cat('Ulrika')

@@ -53,7 +53,7 @@ print my_Burger
 
 class VeggieBurger(Burger): # create a subclass VeggieBurger of the superclass Burger
  def __init__(self, toppings_ordered, container):
-  Burger.__init__(self, "veggie patty", "medium", 0.25, ["cheese"])
+  Burger.__init__(self, "veggie patty", "medium", 0.25, ["cheese"], "bread")
 #  self.toppings_ordered = toppings
  # self.container = container
  
