@@ -21,6 +21,8 @@ class OrdinalTest(unittest.TestCase):
  def test_string_input(self):
   self.assertEqual("Input is not a number.", ordinal.ordinal("1"))
 
+ def test_negative_one(self):
+  self.assertEqual("-1st", ordinal.ordinal(-1))
   
 if __name__ == '__main__':
   unittest.main()

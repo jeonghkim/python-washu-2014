@@ -8,16 +8,21 @@
   
  ## refactoring 
 def ordinal(n):
- if type(n) == 'int':
-  pass
- else: 
+# if (type(n) == int) & (type(n) == float):
+ # pass
+ #else: 
+  #return "Improper Input"
+ try: # try this, and
+  n = int(n)
+ except: # if an error occurred, return this (more efficient than just checking the type, since handles all kinds of errors)
   return "Improper Input"
- n = str(n)
- ending = "th"
+# n = str(n)
  last_digit = n % 10
  second_to_last_digit = (n %100) / 10
- if second_to_last_digit ==1:
-  ending = "th"
+ endings = {1: "st", 2: "nd", 3: "rd"}
+ ending = "th"
+ if second_to_last_digit !=1 and last_digit in endings.keys() :
+  ending = endings[last_digit]
  elif last_digit == 1:
   ending = "st"
  elif last_digit ==2:
