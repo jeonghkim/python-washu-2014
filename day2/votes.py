@@ -22,12 +22,13 @@ class Bill():
     return self.passed
 
 jane = Senator("Jane")
-#jack = Senator("Jack")
-#environment = Bill("Environmental Protection")
-#jane.vote(environment, "yes")
-#jack.vote(environment, "no")
-#environment.result()
-#print environment.votes
-#print environment.passed
-#print jack.bills_voted_on[0].passed
+jack = Senator("Jack")
+environment = Bill("Environmental Protection")
+print jane.vote(environment, "yes")
+
+print jack.vote(environment, "no")
+environment.result()
+print environment.votes
+print environment.passed
+print jack.bills_voted_on[0].passed
 
