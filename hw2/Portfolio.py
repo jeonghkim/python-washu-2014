@@ -7,11 +7,11 @@
 # 3. Mutual Funds
 # + Bonds
 
-import random
+import random # import random library to use random.uniform()
 
 class Portfolio():
- def __init__(self):
-  self.cash = 0
+ def __init__(self): # Initialize the class Portfolio
+  self.cash = 0 # Specify elements of Portfolio
   self.stock = {}
   self.mutualfunds = {}
   self.History = []
@@ -22,38 +22,38 @@ class Portfolio():
   assets += "mutual funds: %r" %(self.mutualfunds)
   return assets
        
- def addCash(self, amount):
-  self.cash += amount
-  self.transaction = "added $%r" % (amount)
-  self.History.append(self.transaction)
+ def addCash(self, amount): # Define addCash methods 
+  self.cash += amount # the element cash will add up the input amount
+  self.transaction = "added $%r" % (amount) 
+  self.History.append(self.transaction) # Append the transaction 
   return self.cash 
 
- def withdrawCash(self, amount):
-  if amount > self.cash:
-   print "Transaction unavailable: Cash will be overdrawn."
-  else:
-   self.cash -= amount
+ def withdrawCash(self, amount): # Define withdrawCash methods
+  if amount > self.cash: # if the input amount is greater than the amount of cash in portfolio:
+   print "Transaction unavailable: Cash will be overdrawn." # print this message.
+  else: # Otherwise, 
+   self.cash -= amount # the element cash will lose the input amount
    self.transaction = "withdrew $%r" % (amount)
    self.History.append(self.transaction)
   return self.cash 
   
- def buyStock(self, share, stock, price): 
+ def buyStock(self, share, stock, price): # Define buyStock method
   self.ticker = stock.ticker
-  if self.ticker in self.stock:
-   self.stock[self.ticker] += share
+  if self.ticker in self.stock: # if the ticker is in the dictionary self.stock in portfolio instance:
+   self.stock[self.ticker] += share # add up the share
   else:
    self.stock[self.ticker] = share
-  self.price = random.uniform(0.5*price, 1.5*price)
-  self.cash -= self.price * share
+  self.price = random.uniform(0.5*price, 1.5*price) # price is drawn from unif[0.5*price, 1.5*price]
+  self.cash -= self.price * share # subtract the amount of price * share from cash
   self.transaction = "bought %r share of %r" % (share, self.ticker)
   self.History.append(self.transaction)
   
  def sellStock(self, share, ticker, price):
   self.ticker = ticker
-  try: 
+  try: # try the following
    self.stock[self.ticker] -= share
-  except:
-   return "No stock named %s" %ticker
+  except: # if there's any error occurred:
+   return "No stock named %s" %ticker # return this message
   self.price = random.uniform(0.5*price, 1.5*price)
   self.cash += self.price * share
   self.transaction = "sold %r share of %r" % (share, self.ticker)
@@ -75,25 +75,30 @@ class Portfolio():
   try: 
    self.mutualfunds[self.symbol] -= share
   except:
-   return "No stock named %s" %symbol
+   return "No mutual funds named %s" %symbol
   self.price = random.uniform(0.9, 1.2)
   self.cash += self.price * share
   self.transaction = "sold %r share of %r" % (share, self.symbol)
   self.History.append(self.transaction)
 
- def history(self):
+ def history(self): #define the method history
   return self.History
     
-class Stock():
+class Stock(): # Define class Stock
  def __init__(self, price, ticker):
   self.price = price
   self.ticker = ticker
 
-class MutualFund():
+class MutualFund(): # Define Class MutualFund
  def __init__(self, symbol):
   self.symbol = symbol
   
-
+# Using inheritance, show how it would be easy to add a third type of investment--Bonds--to the mix.
+class Bonds(MutualFund):
+ def __init__(self, symbol, price):
+  MutualFund.__init__(self, symbol) # initialize Bonds as a subclass of MutualFund. and take care of stuff inherited from superclass
+  self.price = price
+  
     
 portfolio = Portfolio()
 portfolio.addCash(300.50)
@@ -108,5 +113,7 @@ mf2 = MutualFund("GHT")
 portfolio.buyMutualFund(10.3, mf1)
 portfolio.buyMutualFund(2, mf2)
 
+bond1 = Bonds("BRT", 20)
 print(portfolio)
 print portfolio.history()
+
