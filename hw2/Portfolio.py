@@ -37,48 +37,55 @@ class Portfolio():
    self.History.append(self.transaction)
   return self.cash 
   
- def buyStock(self, share, stock, price): # Define buyStock method
+ def buyStock(self, share, stock): # Define buyStock method
   self.ticker = stock.ticker
+  self.price = stock.price
   if self.ticker in self.stock: # if the ticker is in the dictionary self.stock in portfolio instance:
    self.stock[self.ticker] += share # add up the share
   else:
    self.stock[self.ticker] = share
-  self.price = random.uniform(0.5*price, 1.5*price) # price is drawn from unif[0.5*price, 1.5*price]
+  self.price = random.uniform(0.5*stock.price, 1.5*stock.price) # price is drawn from unif[0.5*price, 1.5*price]
   self.cash -= self.price * share # subtract the amount of price * share from cash
   self.transaction = "bought %r share of %r" % (share, self.ticker)
   self.History.append(self.transaction)
   
- def sellStock(self, share, ticker, price):
-  self.ticker = ticker
-  try: # try the following
-   self.stock[self.ticker] -= share
-  except: # if there's any error occurred:
+ def sellStock(self, share, stock):
+  self.ticker = stock.ticker
+  self.price = random.uniform(0.5*stock.price, 1.5*stock.price)
+#   try: # try the following
+#    self.stock[self.ticker] -= share
+  if self.ticker not in self.stock: # if there's no stock named ticker:
    return "No stock named %s" %ticker # return this message
-  self.price = random.uniform(0.5*price, 1.5*price)
-  self.cash += self.price * share
-  self.transaction = "sold %r share of %r" % (share, self.ticker)
-  self.History.append(self.transaction)
+  elif self.stock[self.ticker] < share:
+   print "Transaction unavailable: Not enough share"
+  else:
+   self.stock[self.ticker] -= share
+   self.cash += self.price * share
+   self.transaction = "sold %r share of %r" % (share, self.ticker)
+   self.History.append(self.transaction)
      
  def buyMutualFund(self, share, mutualfunds):
+  self.share = float(share) # Convert share into float since mutual funds can be only purchased as fractional shares
   self.symbol = mutualfunds.symbol
   if self.symbol in self.mutualfunds:
-   self.mutualfunds[self.symbol] += share
+   self.mutualfunds[self.symbol] += self.share
   else: 
-   self.mutualfunds[self.symbol] = share
+   self.mutualfunds[self.symbol] = self.share
   self.price = random.uniform(0.9, 1.2)
-  self.cash -= self.price * share
-  self.transaction = "bought %r share of %r" % (share, self.symbol)
+  self.cash -= self.price * self.share
+  self.transaction = "bought %r share of %r" % (self.share, self.symbol)
   self.History.append(self.transaction)
 
  def sellMutualFund(self, symbol, share):
+  self.share = float(share) # Convert share into float since mutual funds can be only purchased as fractional shares
   self.symbol = symbol
   try: 
-   self.mutualfunds[self.symbol] -= share
+   self.mutualfunds[self.symbol] -= self.share
   except:
    return "No mutual funds named %s" %symbol
   self.price = random.uniform(0.9, 1.2)
-  self.cash += self.price * share
-  self.transaction = "sold %r share of %r" % (share, self.symbol)
+  self.cash += self.price * self.share
+  self.transaction = "sold %r share of %r" % (self.share, self.symbol)
   self.History.append(self.transaction)
 
  def history(self): #define the method history
@@ -105,8 +112,9 @@ portfolio.addCash(300.50)
 portfolio.withdrawCash(400)
 s = Stock(20, "HFH")
 
-portfolio.buyStock(5, s, 1)
-portfolio.sellStock(3,"HHH", 1)
+
+portfolio.buyStock(5, s)
+portfolio.sellStock(3, s)
 
 mf1= MutualFund("BRT")
 mf2 = MutualFund("GHT")
@@ -116,4 +124,5 @@ portfolio.buyMutualFund(2, mf2)
 bond1 = Bonds("BRT", 20)
 print(portfolio)
 print portfolio.history()
+print portfolio.stock
 
