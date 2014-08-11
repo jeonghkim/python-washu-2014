@@ -25,7 +25,8 @@ def makeLink(G, node1, node2): #
 # #     G[node3] = {}
 # #   (G[node3])[node2] = 1
 # #   (G[node2])[node3] = 1
-#   return G 
+#   return G
+ 
 def make2Link(G, node1, node2, node3):
  if node1 not in G:
    G[node1] = {}
@@ -103,10 +104,13 @@ print sum([len(ring[node]) for node in ring.keys()])/2
 # Grid Network
 # TODO: create a square graph with 256 nodes and count the edges # grid with 16**2 = 256
 # TODO: define a function countEdges
+
+
+
+
+
+
 # 
-#  square = {}
-#  
-#  n = 4
 #  
 #  # Add in edges
 #  for i in range(n):
