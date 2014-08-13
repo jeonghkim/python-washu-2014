@@ -13,10 +13,11 @@ def selection(list=[]): # selection function takes an argument of list
     list[min_index], list[i] = list[i], list[min_index] # swap the min_index element and the i-th element of the list. 
  return list 
  
-print selection(list = [5,2,6,8,3])
+#print selection(list = [5,2,6,8,3])
 
 # 2. merge_sort algorithm
-def merge_sort(list=[]):
+
+def merge_sort(list=[]): 
  if len(list) <=1: return list
  left = list[:len(list)/2]
  right = list[len(list)/2 : len(list)]
@@ -43,4 +44,4 @@ def merge(left, right):
  return merged
 
 #  
-print merge_sort(list=[5,6,3,7])
+#print merge_sort(list=[5,6,3,7])
