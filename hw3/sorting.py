@@ -1,7 +1,8 @@
 ## HW 3: Implement two different sorting algorithms. 
 # Jeong
 
-# 1. selection sorting algorithm
+import random
+# 1. selection sorting algorithm: The complexity class of selection sorting algorithm is O(n^2)
 
 def selection(list=[]): # selection function takes an argument of list
  for i in range(0, len(list)-1): # Define the first through the last-1 index in list: (Notice that we don't need to go over the last element)
@@ -13,9 +14,8 @@ def selection(list=[]): # selection function takes an argument of list
     list[min_index], list[i] = list[i], list[min_index] # swap the min_index element and the i-th element of the list. 
  return list 
  
-#print selection(list = [5,2,6,8,3])
 
-# 2. merge_sort algorithm
+# 2. merge_sort algorithm: The complexity class of merge_sort algorithm is O(nlogn)
 
 def merge_sort(list=[]): 
  if len(list) <=1: return list
@@ -43,5 +43,20 @@ def merge(left, right):
    merged.extend(left[i:])
  return merged
 
-#  
-#print merge_sort(list=[5,6,3,7])
+ # 3. quick_sort algorithm
+def quick_sort(myList):
+ if len(myList) <= 1: return myList
+ else:
+	i = random.sample(range(len(myList)), 1)[0] # Choose a random pivot such that pivot = myList[i].
+	pivot = myList.pop(i) # Now, myList excludes pivot.
+	left = [] # An empty list that will contain the values smaller than pivot.
+	right = [] # An empty list that will contain the values greater than pivot.
+	for j in range(len(myList)):
+	 if myList[j] <= pivot:
+	  left.append(myList[j])
+	 else:
+	  right.append(myList[j])
+	left = quick_sort(left) # By recursion, we keep selecting a random pivot and partitioning myList.  
+	right = quick_sort(right)
+	left.append(pivot) # Add the initial pivot to the left list.
+	return left + right
