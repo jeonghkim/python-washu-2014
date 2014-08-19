@@ -34,14 +34,14 @@ print f.read()
 f.close()
 
 #Writing files is easy, open command takes r, w, a plus some others
-with open('writefile.txt', 'w') as f:
+with open('writefile.txt', 'wb') as f:
   #wipes the file clean and opens it
-  f.write("Hi guys.")
-  f.write("Does this go on the second line?")
+  f.write("Hi guys.\n")
+  f.write("Does this go on the second line?\n")
   f.writelines(['a', 'b', 'c'])
-  # f.flush() # If using the file object interactively you may need to flush the buffer
+  f.flush() # If using the file object interactively you may need to flush the buffer
 
-with open('writefile.txt', 'a') as f:
-  #just tacks some things on the end
-  f.write("\nI got appended!")
-  f.flush()
+# with open('writefile.txt', 'a') as f: # append things instead of overwriting
+#   #just tacks some things on the end
+#   f.write("\nI got appended!")
+#   f.flush() 

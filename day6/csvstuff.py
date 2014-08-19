@@ -18,7 +18,7 @@ with open('test1.csv', 'wb') as f:
     
 #How about with field names
 with open('test_with_fields.csv', 'wb') as f:
-  my_writer = csv.DictWriter(f, fieldnames=("A", "B"))
+  my_writer = csv.DictWriter(f, fieldnames=("A", "B")) # write as dictionary; specifying each row as a dictionary
   my_writer.writeheader()
   for i in range(1, 100):
     my_writer.writerow({"B":i, "A":i-1})
