@@ -6,7 +6,7 @@ text = file.readlines()
 file.close()
 
 # compile the regular expression
-keyword = re.compile(r"the ")
+keyword = re.compile(r"the ") 
 
 # search file for keyword, line by line
 for line in text:
@@ -25,3 +25,5 @@ for line in text:
 #   print "Year: ", result.group(3) 
 
 # TODO: Write a regular expression that finds html tags in example.html and print them.
+# file = open("example.html", "r")
+# re.compile(^<\w*\W*>$)

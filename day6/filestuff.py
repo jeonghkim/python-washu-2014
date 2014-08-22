@@ -34,7 +34,7 @@ print f.read()
 f.close()
 
 #Writing files is easy, open command takes r, w, a plus some others
-with open('writefile.txt', 'wb') as f:
+with open('writefile.txt', 'w') as f:
   #wipes the file clean and opens it
   f.write("Hi guys.\n")
   f.write("Does this go on the second line?\n")

@@ -7,7 +7,7 @@ import urllib2
 import re
 
 # What page? 
-page_to_scrape = 'https://petitions.whitehouse.gov/petitions'
+page_to_scrape = 'https://petitions.whitehouse.gov/petitions/'
 
 # What info do we want? 
 headers = ["Summary", "Signatures"]
@@ -27,7 +27,7 @@ soup.prettify()
 
 # 
 # # Extract petitions on page
-petitions = soup.findAll("a", href=re.compile('^/petition'))
+#petitions = soup.findAll("a", href=re.compile('^/petition'))
 print len(petitions)
 
 # petitions = soup.findAll("div", attrs={'class':'title'})
