@@ -76,7 +76,6 @@ def myreduce(fnc, seq):
 L = ['Testing ', 'shows ', 'the ', 'presence', ', ','not ', 'the ', 'absence ', 'of ', 'bugs']
 reduce( (lambda x,y:x+y), L)
 
-reduce( (lambda x,y:x+y), map(len, L))
 
 reduce( (lambda x,y:x+y), map(sqr, items))
 >>>>>>> upstream/master
