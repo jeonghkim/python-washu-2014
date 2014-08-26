@@ -13,6 +13,7 @@ api.rate_limit_status()
 
 #Get all tweets, https://dev.twitter.com/docs/api/1/get/statuses/public_timeline
 public_tweets = api.public_timeline()
+
 for t in public_tweets:
   #Note I am handling UTF encoded strings so I convert them to ASCII-compatible for my mac
   print "{0}: {1}".format(t.user.screen_name.encode('ascii', 'ignore'), t.text.encode('ascii', 'ignore'))

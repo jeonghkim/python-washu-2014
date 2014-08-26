@@ -3,26 +3,26 @@ import sqlalchemy
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, ForeignKey, and_, or_
-from sqlalchemy.orm import relationship, backref, sessionmaker
+from sqlalchemy.orm import relationship, backref, sessionmaker # object relation model
 
 #Some info about sqlalchemy
 print sqlalchemy.__version__
 
 #Connect to the local database, can use :memory: to just try it out in memory
-engine = sqlalchemy.create_engine('sqlite:////Users/mcdickenson/inclass.db', echo=True)
+engine = sqlalchemy.create_engine('sqlite:////Users/Jeong/inclass.db', echo=True)
 
 Base = declarative_base() 
 
-#Define some schemas
-class Player(Base):
+#Define some schemas 
+class Player(Base): #inherits from Base
   __tablename__ = 'players'
   
   #Have an ID column because player attributes (name, etc) are not unique
-  id = Column(Integer, primary_key=True)
+  id = Column(Integer, primary_key=True) # primary_key: uniquely identified
   name = Column(String)
   number = Column(Integer)
   
-  team_id = Column(Integer, ForeignKey("teams.id"))
+  team_id = Column(Integer, ForeignKey("teams.id")) # refer to another table teams, ID variable
   
   def __init__(self, name, number, team=None):
     self.name = name
@@ -38,7 +38,7 @@ class Team(Base):
   
   id = Column(Integer, primary_key=True)
   name = Column(String)
-  players = relationship("Player", backref="team")
+  players = relationship("Player", backref="team") #backreference: saying multiple players can belong to the same team. Inverse of foreign key. 
   
   def __init__(self, name):
     self.name = name
@@ -84,6 +84,7 @@ for player in session.query(Player).order_by(Player.number)[1:3]:
   print player.number, player.name
 
 #Some filters
+# .query: gives you access to table
 for player in session.query(Player).filter(Player.name == "Mason Plumlee").order_by(Player.number):
   print player.number, player.name
   
@@ -94,7 +95,7 @@ for player in session.query(Player).filter(or_(Player.name == "Mason Plumlee", P
   print player.number, player.name
   
 for player in session.query(Player).filter(Player.name.like("%Plumlee%")).order_by(Player.number):
-  print player.number, player.name
+  print player.number, player.name #approximate matching
 
 for player in session.query(Player).filter(and_(Player.name.like("%Plumlee%"), Player.number > 10)).order_by(Player.number):
   print player.number, player.name
@@ -112,7 +113,7 @@ duke = Team('Duke')
 players = session.query(Player).all()
 mason.team = duke
 players[1].team = duke
-mason.team.players
+mason.team.players # we can see all players who are in the same team with mason
 
 str(duke.id)
 
@@ -135,6 +136,10 @@ players
 #Updating
 other_plumlee = players[4]
 other_plumlee.name = "Marshall Plumlee"
-session.dirty
+session.dirty # what has changed?
 session.commit()
 
+# how to convert data to csv
+
+for player in players:
+ print player.name, player.number, player.team

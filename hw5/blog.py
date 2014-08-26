@@ -23,7 +23,7 @@ csvwriter.writerow(headers)
 webpage = urllib2.urlopen(blog_to_scrape)
 
 # Parse it
-soup = BeautifulSoup(webpage.read()) # parse with BeautifulSoup
+soup = BeautifulSoup(webpage.read()) # parse with BeautifulSoup (structure the data)
 soup.prettify()
 
 
